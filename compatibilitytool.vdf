@@ -1,0 +1,14 @@
+"compatibilitytools"
+{
+  "compat_tools"
+  {
+	"alterlaunch"
+	{
+	  "install_path" "."
+	  "display_name" "AlterLaunch"
+
+	  "from_oslist"  "windows"
+	  "to_oslist"    "linux"
+	}
+  }
+}

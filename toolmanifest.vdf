@@ -1,0 +1,5 @@
+"manifest"
+{
+  "commandline" "/AlterLaunch"
+  "commandline_waitforexitandrun" "/AlterLaunch"
+}
