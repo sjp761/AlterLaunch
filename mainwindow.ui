@@ -51,6 +51,13 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="launchTempEXEButton">
+         <property name="text">
+          <string>Run EXE inside game prefix</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>

@@ -11,9 +11,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->launchButton, &QPushButton::clicked, this, [this]() {
-        launchGameExe(QString::fromStdString(gameExe));
+        launchGameExe(QString::fromStdString(gameExe), true);
     });
     connect(ui->changeEXEButton, &QPushButton::clicked, this, &MainWindow::changeGameExe);
+    connect(ui->launchTempEXEButton, &QPushButton::clicked, this, &MainWindow::handleLaunchTempEXE);
 }
 
 MainWindow::~MainWindow()
@@ -21,7 +22,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::launchGameExe(const QString &exePath)
+void MainWindow::launchGameExe(const QString &exePath, bool isMainExe)
 {
     if (gameExe.empty()) {
         std::cout << "Error: No game executable specified" << std::endl;
@@ -35,9 +36,9 @@ void MainWindow::launchGameExe(const QString &exePath)
     arguments << "--";
     arguments << QString::fromStdString(protonExe);
     arguments << "waitforexitandrun";
-    arguments << QString::fromStdString(gameExe);
+    arguments << exePath;
     
-    if (!gameParams.empty()) {
+    if (!gameParams.empty() && isMainExe) {
         QStringList gameArgs = QString::fromStdString(gameParams).split(" ", Qt::SkipEmptyParts);
         arguments << gameArgs;
     }
@@ -79,6 +80,14 @@ void MainWindow::refreshGameInfoBox()
         info += "Parameters: " + QString::fromStdString(gameParams) + "\n";
     }
     ui->gameInfoBox->setText(info);
+}
+
+void MainWindow::handleLaunchTempEXE()
+{
+    QString tempExePath = QFileDialog::getOpenFileName(this, "Select Temporary Game Executable", QString(), "Executable Files (*.exe)");
+    if (!tempExePath.isEmpty()) {
+        launchGameExe(tempExePath, false);
+    }
 }
 
 void MainWindow::changeGameExe()

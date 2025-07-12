@@ -3,7 +3,8 @@ If you decide to use it, hope it works well for you.
 
 Features:
 -Change the EXE used to run a proton game on steam
--Set temporary or "permanent" exe (TODO)
+-Run EXE inside game prefix
+-Ability to set and save "permanent" exe (TODO)
 -Allow selection of proton version (TODO)
 -Install some special tools like optiscaler (Possibility, not sure about this yet)
 

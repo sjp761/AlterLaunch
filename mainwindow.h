@@ -16,10 +16,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void launchGameExe(const QString &exePath);
+    void launchGameExe(const QString &exePath, bool isMainExe);
     void setGameLaunchInfo(char *argv[]);
     void refreshGameInfoBox();
+
+public slots:
     void changeGameExe();
+    void handleLaunchTempEXE();
 
 private:
     std::string gameExe;
